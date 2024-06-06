@@ -18,11 +18,11 @@ document.getElementById("fetchData").addEventListener("click", () => {
               const a = document.createElement('a');
               a.href = friend.url;
               a.textContent = friend.name;
-              a.target = '_blank'; // Open link in a new tab
+              a.target = '_blank'; 
               const span = document.createElement('span');
               span.textContent = friend.mutual;
               li.appendChild(a);
-              li.appendChild(document.createTextNode(' - ')); // Add separator
+              li.appendChild(document.createTextNode(' - '));
               li.appendChild(span);
               output.appendChild(li);
             });
@@ -44,6 +44,8 @@ document.getElementById("fetchData").addEventListener("click", () => {
   }
   });
 });
+
+
 
 function fetchAllFacebookData() {
   let friends = [];
@@ -70,19 +72,31 @@ function fetchAllFacebookData() {
   return friends;
 }
 
+// function scrollToBottomAndFetchData() {
+//   const container = document.querySelector('div[aria-label="All friends"][role="navigation"]');
 
+//   if (container) {
+//     const insideDiv = container.querySelector('div');
+//     const nestedDiv = insideDiv.querySelectorAll('Div')[17];
+//     console.log(nestedDiv);
+//     if (nestedDiv) {
+//       const scrollToBottom = () => {
+//         nestedDiv.scrollTop = nestedDiv.scrollHeight;
+//       };
 
-
-
-
-
-
-
-
-    // const name = data[i + 1].getAttribute("aria-label");
-    // let mutual = "No mutual friends";
-    // if(spanElements)
-    // {
-    //   console.log("span", spanElements[2], spanElements[5]);
-    // }
-    // friends.push({ name, url});
+//       const fetchDataInterval = setInterval(() => {
+//         const prevScrollHeight = nestedDiv.scrollHeight;
+//         scrollToBottom();
+//         if (nestedDiv.scrollHeight === prevScrollHeight) {
+//           clearInterval(fetchDataInterval);
+//           const friends = fetchAllFacebookData();
+//           sendResponse(friends);
+//         }
+//       }, 1000); // Adjust the interval as needed
+//     } else {
+//       console.error("Nested div not found");
+//     }
+//   } else {
+//     console.error("Container not found");
+//   }
+// }
