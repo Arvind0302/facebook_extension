@@ -49,10 +49,13 @@ document.getElementById("fetchData").addEventListener("click", () => {
 
 function fetchAllFacebookData() {
   let friends = [];
-  const data = document.querySelectorAll('div[data-visualcompletion="ignore-dynamic"]');
-  
-  for (let i = 1; i < data.length; i++) {
-    
+  const container = document.querySelector('div[aria-label="All friends"][role="navigation"]>div>div:nth-child(2)>div:nth-child(1)>div:nth-child(2)>div');
+  console.log("container", container);
+
+  // scroll to bottom of container to load all data
+
+  const data = container.querySelectorAll('div[data-visualcompletion="ignore-dynamic"]');
+  for (let i = 0; i < data.length; i++) {
     var anchorTag = data[i].getElementsByTagName("a")[0];
     const spanElements = anchorTag?.querySelectorAll('span');
     if(spanElements)
@@ -72,31 +75,3 @@ function fetchAllFacebookData() {
   return friends;
 }
 
-// function scrollToBottomAndFetchData() {
-//   const container = document.querySelector('div[aria-label="All friends"][role="navigation"]');
-
-//   if (container) {
-//     const insideDiv = container.querySelector('div');
-//     const nestedDiv = insideDiv.querySelectorAll('Div')[17];
-//     console.log(nestedDiv);
-//     if (nestedDiv) {
-//       const scrollToBottom = () => {
-//         nestedDiv.scrollTop = nestedDiv.scrollHeight;
-//       };
-
-//       const fetchDataInterval = setInterval(() => {
-//         const prevScrollHeight = nestedDiv.scrollHeight;
-//         scrollToBottom();
-//         if (nestedDiv.scrollHeight === prevScrollHeight) {
-//           clearInterval(fetchDataInterval);
-//           const friends = fetchAllFacebookData();
-//           sendResponse(friends);
-//         }
-//       }, 1000); // Adjust the interval as needed
-//     } else {
-//       console.error("Nested div not found");
-//     }
-//   } else {
-//     console.error("Container not found");
-//   }
-// }
