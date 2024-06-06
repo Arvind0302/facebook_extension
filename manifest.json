@@ -5,7 +5,7 @@
     "description": "This is an extension to fetch Facebook friends data.",
     "permissions": [
         "activeTab",
-        "storage",
+        "tabs",
         "scripting"
       ],
     "action": {
@@ -15,5 +15,8 @@
         "48": "icons/icon48.png",
         "128": "icons/icon128.png"
       }
+    },
+    "background": {
+      "service_worker": "background.js"
     }
   }
