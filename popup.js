@@ -51,7 +51,7 @@ async function fetchAllFacebookData() {
   let friends = [];
   const container = document.querySelector('div[aria-label="All friends"][role="navigation"]>div>div:nth-child(2)');
   console.log("container", container);
-
+  console.log("before scrolling", container.scrollTop);
   async function scrollPage() {
     await new Promise((resolve) => {
       let totalHeight = 0;
@@ -61,7 +61,6 @@ async function fetchAllFacebookData() {
         container.scrollBy(0, distance);
         totalHeight += distance;
         if (totalHeight >= scrollHeight) {
-          console.log("break from scrollPage")
           clearInterval(scrollInterval);
           resolve();
         }
@@ -75,7 +74,6 @@ async function fetchAllFacebookData() {
       await scrollPage();
       const afterScroll = container.scrollY;
       if (beforeScroll === afterScroll) {
-        console.log("break", beforeScroll, afterScroll);
         break; 
       }
     }
@@ -83,9 +81,10 @@ async function fetchAllFacebookData() {
 
   await scrollAndWait();
 
+  console.log("after scrolling", container.scrollTop);
 
-  const data = container.querySelectorAll('div[data-visualcompletion="ignore-dynamic"]');
-  for (let i = 0; i < data.length; i++) {
+  const data = document.querySelectorAll('div[data-visualcompletion="ignore-dynamic"]');
+  for (let i = 1; i < data.length; i++) {
     var anchorTag = data[i].getElementsByTagName("a")[0];
     const spanElements = anchorTag?.querySelectorAll('span');
     if(spanElements)
